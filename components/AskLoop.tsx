@@ -209,7 +209,7 @@ export default function AskLoop() {
             </div>
             <h2 className="yes-title">Best decision you've made all day!</h2>
             <p className="subtext">Ready to eat some good food???? 🤤 (Heads up, they don't do reservations) </p>
-            <div className="plan">Dinner @ Soju - February 14 at 5:30 PM</div>
+            <div className="plan">Dinner @ Soju - February 14, today, at 5:30 PM</div>
             <button className="btn btn-outline" onClick={handleReset}>
               Replay
             </button>
