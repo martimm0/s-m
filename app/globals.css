@@ -78,8 +78,11 @@ body {
 
 .helper {
   font-size: 1.05rem;
-  color: var(--muted);
+  color: #fff7fb;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
   min-height: 24px;
+  position: relative;
+  z-index: 3;
 }
 
 .icon-hero {
@@ -94,12 +97,15 @@ body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 }
 
 .button-area {
   position: relative;
-  min-height: 120px;
+  min-height: 150px;
   margin-top: 18px;
+  overflow: visible;
 }
 
 .btn {
@@ -118,6 +124,9 @@ body {
 }
 
 .btn-yes {
+  position: relative;
+  z-index: 1;
+  transform-origin: center;
   background: linear-gradient(135deg, var(--accent), #ff9aa2);
   color: #fff5fb;
 }
@@ -137,7 +146,19 @@ body {
 }
 
 .btn-no.mover {
-  position: absolute;
+  position: fixed;
+  z-index: 100;
+}
+
+.no-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.no-layer .btn {
+  pointer-events: auto;
 }
 
 .note {
