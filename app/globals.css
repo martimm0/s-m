@@ -1,26 +1,222 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0c0b16;
+  --foreground: #f5e9f2;
+  --card: #161324;
+  --muted: #c3a9bb;
+  --accent: #ff4b7a;
+  --accent-strong: #ff265f;
+  --accent-soft: #5a1d37;
+  --outline: #2a2140;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-body);
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #241a33 0%, transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, #351326 0%, transparent 55%),
+    linear-gradient(180deg, #0c0b16 0%, #120e20 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), "Trebuchet MS", sans-serif;
+  margin: 0;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.card {
+  position: relative;
+  width: min(860px, 100%);
+  background: linear-gradient(180deg, var(--card), #120f22);
+  border: 1px solid var(--outline);
+  border-radius: 28px;
+  padding: 36px 28px 40px;
+  box-shadow: 0 24px 60px rgba(5, 3, 12, 0.55);
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(140px 140px at 12% 18%, rgba(255, 75, 122, 0.18), transparent 60%),
+    radial-gradient(180px 180px at 85% 30%, rgba(255, 38, 95, 0.22), transparent 60%);
+  pointer-events: none;
+}
+
+.title {
+  font-family: var(--font-display), "Trebuchet MS", cursive;
+  font-size: clamp(2.4rem, 3vw + 1.4rem, 3.6rem);
+  letter-spacing: 0.5px;
+  margin: 0 0 10px;
+}
+
+.subtext {
+  font-size: clamp(1.05rem, 0.6vw + 0.9rem, 1.35rem);
+  color: var(--muted);
+  margin: 0 0 24px;
+}
+
+.question {
+  font-family: var(--font-display), "Trebuchet MS", cursive;
+  font-size: clamp(1.8rem, 2.2vw + 1rem, 2.7rem);
+  margin: 0 0 6px;
+}
+
+.helper {
+  font-size: 1.05rem;
+  color: var(--muted);
+  min-height: 24px;
+}
+
+.icon-hero {
+  font-size: clamp(4rem, 6vw, 6.5rem);
+  color: var(--accent);
+  animation: bob 2.6s ease-in-out infinite;
+}
+
+.buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.button-area {
+  position: relative;
+  min-height: 120px;
+  margin-top: 18px;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 0 10px 22px rgba(10, 6, 22, 0.45);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, var(--accent), #ff9aa2);
+  color: #fff5fb;
+}
+
+.btn-yes:hover {
+  background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+}
+
+.btn-no {
+  background: rgba(18, 14, 32, 0.9);
+  color: #f5c8d9;
+  border: 2px solid #5a1d37;
+}
+
+.btn-no.shrink {
+  transform: scale(0.92);
+}
+
+.btn-no.mover {
+  position: absolute;
+}
+
+.note {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.celebration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.float-item {
+  position: absolute;
+  bottom: -10%;
+  animation: floatUp var(--dur, 6s) ease-in infinite;
+  opacity: 0.9;
+}
+
+.float-heart {
+  color: #ff4b7a;
+  font-size: clamp(1.4rem, 2vw, 2.4rem);
+}
+
+.float-cat {
+  color: #ff86a6;
+  font-size: clamp(1.8rem, 2.6vw, 3rem);
+}
+
+.yes-title {
+  font-family: var(--font-display), "Trebuchet MS", cursive;
+  font-size: clamp(2rem, 2.4vw + 1rem, 3rem);
+  margin: 0 0 10px;
+}
+
+.plan {
+  margin-top: 12px;
+  padding: 12px 18px;
+  background: rgba(255, 75, 122, 0.12);
+  border: 2px dashed rgba(255, 75, 122, 0.5);
+  border-radius: 16px;
+  font-weight: 600;
+}
+
+.btn-outline {
+  margin-top: 16px;
+  background: transparent;
+  color: #f7d8e6;
+  border: 2px solid rgba(255, 75, 122, 0.6);
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 75, 122, 0.12);
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -120vh, 0) rotate(12deg);
+    opacity: 0;
+  }
 }
